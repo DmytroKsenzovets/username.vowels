@@ -38,9 +38,20 @@ Class username_vowels extends CModule {
         return true;
     }
 
+    function InstallEvents() {
+        EventManager::getInstance()->registerEventHandler(
+            'rest',
+            'OnRestServiceBuildDescription',
+            $this->MODULE_ID,
+            '\Username\Vowels\Rest\UserNameVowels',
+            'OnRestServiceBuildDescription'
+        );
+    }
+
     function DoInstall() {
         global $DOCUMENT_ROOT, $APPLICATION;
         $this->InstallFiles();
+        $this->InstallEvents();
         RegisterModule($this->MODULE_ID);
 
         $APPLICATION->IncludeAdminFile(GetMessage("INSTALL_INSTALL_MOD") . $this->MODULE_ID, $DOCUMENT_ROOT . "/local/modules/" . $this->MODULE_ID . "/install/step.php");
