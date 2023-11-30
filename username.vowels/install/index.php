@@ -25,15 +25,12 @@ Class username_vowels extends CModule {
     }
 
     function InstallFiles() {
-        CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/local/modules/" . $this->MODULE_ID . "/install/lib"
-            , $_SERVER["DOCUMENT_ROOT"]."/local/modules/" . $this->MODULE_ID . "/lib", true, true);
         CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/local/modules/" . $this->MODULE_ID . "/install/.settings.php"
             , $_SERVER["DOCUMENT_ROOT"]."/local/modules/" . $this->MODULE_ID . "/.settings.php");
         return true;
     }
 
     function UnInstallFiles() {
-        DeleteDirFilesEx("/local/modules/" . $this->MODULE_ID . "/lib");
         DeleteDirFilesEx("/local/modules/" . $this->MODULE_ID . "/.settings.php");
         return true;
     }
